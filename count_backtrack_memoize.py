@@ -1,12 +1,10 @@
 def count_backtrack_memoize(T:str, A:str):
     if 0 < len(T) and len(T) <= len(A):
         memoize = {}
-        
         def backtrack(T:str, A:str, index:int, S:str):
             if len(A) == index:
                 if T == S[0:len(T)]:return 1
                 return 0
-
             char = A[index]
             dict_str = A[index+1:len(A)]
             word_form = char + S
@@ -15,7 +13,6 @@ def count_backtrack_memoize(T:str, A:str):
             else: 
                 cant = backtrack(T, A, index+1, word_form)
                 memoize[dict_str] = {word_form : cant}
-            
             word_form = S + char
             if dict_str in memoize and word_form in memoize[dict_str]: 
                 cant += memoize[dict_str][word_form]
@@ -23,7 +20,6 @@ def count_backtrack_memoize(T:str, A:str):
                 cant2 = backtrack(T, A, index+1, word_form)
                 memoize[dict_str] = {word_form : cant2}
                 cant += cant2
-
             return cant
         return backtrack(T, A, 0, "")
     return 0

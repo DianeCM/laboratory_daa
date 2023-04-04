@@ -1,6 +1,6 @@
 def count_backtrack(T:str, A:str):
     if 0 < len(T) and len(T) <= len(A):
-        def backtrack(T:list, A:list, index:int, S:list):
+        def backtrack(T:str, A:str, index:int, S:str):
             if len(A) == index:
                 if T == S[0:len(T)]:return 1
                 return 0
