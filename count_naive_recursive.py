@@ -1,18 +1,18 @@
-def count_naive_recursive(T:str, A:str):
-    if 0 < len(T) and len(T) <= len(A):
-        def naive_recursive(A,T):
-            if len(A) < len(T): return 0
-            if len(A)==1: 
-                if len(T)==1 and T[0]==A[0]: return 2
+def count_naive_recursive(T:str, S:str):
+    if 0 < len(T) and len(T) <= len(S):
+        def naive_recursive(S,T):
+            if len(S) < len(T): return 0
+            if len(S)==1: 
+                if len(T)==1 and T[0]==S[0]: return 2
                 return 0
             if len(T)==0 : return 0
-            output = naive_recursive(A[0:len(A)-1],T)
-            if A[-1]==T[0]: 
-                if len(T)==1: output += 2**(len(A)-1)
-                else: output += naive_recursive(A[0:len(A)-1],T[1:])
-            if len(A)==len(T) and A[-1]==T[-1]: output += naive_recursive(A[0:len(A)-1],T[0:len(T)-1])
+            output = naive_recursive(S[0:len(S)-1],T)
+            if S[-1]==T[0]: 
+                if len(T)==1: output += 2**(len(S)-1)
+                else: output += naive_recursive(S[0:len(S)-1],T[1:])
+            if len(S)==len(T) and S[-1]==T[-1]: output += naive_recursive(S[0:len(S)-1],T[0:len(T)-1])
             return output
-        return naive_recursive(A,T)
+        return naive_recursive(S,T)
     return 0
 
 

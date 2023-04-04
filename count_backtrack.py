@@ -1,15 +1,14 @@
-def count_backtrack(T:str, A:str):
-    if 0 < len(T) and len(T) <= len(A):
-        def backtrack(T:str, A:str, index:int, S:str):
-            if len(A) == index:
-                if T == S[0:len(T)]:return 1
+def count_backtrack(T:str, S:str):
+    if 0 < len(T) and len(T) <= len(S):
+        def backtrack(T:str, S:str, index:int, A:str):
+            if len(S) == index:
+                if T == A[0:len(T)]:return 1
                 return 0
-    
-            char = A[index]
-            cant = backtrack(T, A, index+1, char+S)
-            cant += backtrack(T, A, index+1, S+char)
+            char = S[index]
+            cant = backtrack(T, S, index+1, char+A)
+            cant += backtrack(T, S, index+1, A+char)
             return cant
-        return backtrack(T, A, 0, "")
+        return backtrack(T, S, 0, "")
     return 0
 
 print(count_backtrack('ACAC','ACACBCA'))

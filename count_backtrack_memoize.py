@@ -1,27 +1,27 @@
-def count_backtrack_memoize(T:str, A:str):
-    if 0 < len(T) and len(T) <= len(A):
+def count_backtrack_memoize(T:str, S:str):
+    if 0 < len(T) and len(T) <= len(S):
         memoize = {}
-        def backtrack(T:str, A:str, index:int, S:str):
-            if len(A) == index:
-                if T == S[0:len(T)]:return 1
+        def backtrack(T:str, S:str, index:int, A:str):
+            if len(S) == index:
+                if T == A[0:len(T)]:return 1
                 return 0
-            char = A[index]
-            dict_str = A[index+1:len(A)]
-            word_form = char + S
+            char = S[index]
+            dict_str = S[index+1:len(S)]
+            word_form = char + A
             if dict_str in memoize and word_form in memoize[dict_str]: 
                 cant = memoize[dict_str][word_form]
             else: 
-                cant = backtrack(T, A, index+1, word_form)
+                cant = backtrack(T, S, index+1, word_form)
                 memoize[dict_str] = {word_form : cant}
-            word_form = S + char
+            word_form = A + char
             if dict_str in memoize and word_form in memoize[dict_str]: 
                 cant += memoize[dict_str][word_form]
             else:
-                cant2 = backtrack(T, A, index+1, word_form)
+                cant2 = backtrack(T, S, index+1, word_form)
                 memoize[dict_str] = {word_form : cant2}
                 cant += cant2
             return cant
-        return backtrack(T, A, 0, "")
+        return backtrack(T, S, 0, "")
     return 0
 
 print(count_backtrack_memoize('ACAC','ACACBCA'))
