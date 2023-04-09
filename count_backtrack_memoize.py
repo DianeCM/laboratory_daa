@@ -21,7 +21,7 @@ def count_backtrack_memoize(T:str, S:str):
                 memoize[dict_str] = {word_form : cant2}
                 cant += cant2
             return cant
-        return backtrack(T, S, 0, "")
+        return 2*backtrack(T, S, 1, S[0])
     return 0
 
 print(count_backtrack_memoize('ACAC','ACACBCA'))
